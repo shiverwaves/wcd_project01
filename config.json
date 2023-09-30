@@ -1,0 +1,54 @@
+{
+    "vpc_name" : "wcd_project01_vpc",
+    "vpc_cidr" : "10.0.0.0/16",
+    "igw_name" : "wcd_project01_igw",
+    "subnet_name" : "wcd_project01_pub-subnet",
+    "subnet_cidr" : "10.0.0.0/24",
+    "rtbl_name" : "wcd_project01_pub-rtbl",
+    "rt_dest" : "0.0.0.0/0",
+    "sg_name": "wcd_project01_ec2-sg",
+    "sg_descr": "Security Group allowing inbound access over ssh, icmp",
+    "sg_rules": [
+            {
+                "FromPort": 22,
+                "IpProtocol": "tcp",
+                "IpRanges": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "Description": "SSH access from anywhere"
+                    }
+                ],
+                "ToPort": 22
+            },
+            {
+                "FromPort": -1,
+                "IpProtocol": "icmp",
+                "IpRanges": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "Description": "ICMP ping from anywhere"
+                    }
+                ],
+                "ToPort": -1
+            }
+            
+        ],
+    "key_name": "wcd_project01_key",
+    "instances": [
+        {
+            "ins_name": "master-node-01",    
+            "ami_id": "ami-0261755bbcb8c4a84",
+            "ins_type": "t2.small"
+        },
+        {
+            "ins_name": "worker-node-01",    
+            "ami_id": "ami-0261755bbcb8c4a84",
+            "ins_type": "t2.micro"
+         },
+        {
+            "ins_name": "worker-node-02",    
+            "ami_id": "ami-0261755bbcb8c4a84",
+            "ins_type": "t2.micro"
+        }
+    ]
+}
